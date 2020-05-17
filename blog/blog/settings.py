@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'jwt',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'djoser'
+
 ]
 
 MIDDLEWARE = [
@@ -95,35 +97,18 @@ AUTH_USER_MODEL = 'registration.Users'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication'
-        'registration.backends.JWTAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'registration.backends.JWTAuthentication',),
 
-
-    ),
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    #     'rest_framework.permissions.AllowAny',
-    #
-    # ],
-    #
 
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
     )
 }
-
-JWT_AUTH = {
-
-    'JWT_VERIFY': True,
-    'JWT_VERIFY_EXPIRATION': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
-    'JWT_AUTH_HEADER_PREFIX': 'Token',
-
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
 }
-REST_USE_JWT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
